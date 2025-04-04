@@ -1,0 +1,10 @@
+body{
+    margin: 10px;
+}
+h2{
+    font-weight: bold;
+    font-size: 25px;
+}
+li{
+    padding-left: 40px;
+}
