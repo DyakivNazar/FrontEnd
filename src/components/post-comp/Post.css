@@ -1,0 +1,11 @@
+div.post-wrapper {
+    margin-bottom: 10px;
+    margin-left: 5px;
+    background: aquamarine;
+}
+div.post-wrapper>.body{
+    border: 1px solid black;
+}
+div.post-wrapper>ul>li{
+    padding-left: 10px;
+}
