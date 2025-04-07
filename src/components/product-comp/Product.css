@@ -1,0 +1,33 @@
+div.product-wrapper {
+    margin-left: 5px;
+    margin-bottom: 10px;
+    border: 1px solid darkgray;
+}
+div.product-wrapper>.img {
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+    height: 200px;
+
+}
+div.product-wrapper>h2 {
+    font-weight: bold;
+    font-size: 25px;
+}
+div.product-wrapper>.description {
+    border: 1px solid burlywood;
+}
+div.product-wrapper>ul>li {
+    padding-left: 10px;
+}
+div.product-wrapper>.review {
+    border: 1px solid crimson;
+}
+div.product-wrapper>.review>div {
+    border: 1px solid aqua;
+    padding-left: 20px;
+    margin-bottom: 10px;
+}
+div.product-wrapper>.review>div>h5 {
+    font-weight: bold;
+}
