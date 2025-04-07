@@ -1,12 +1,13 @@
 import './App.css'
+import {Comments} from "./components/comments-comp/Comments.tsx";
 
 function App() {
 
-  return (
-    <>
-
-    </>
-  )
+    return (
+        <>
+            <Comments/>
+        </>
+    )
 }
 
 export default App

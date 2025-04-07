@@ -1,0 +1,6 @@
+div.comment-wrap {
+    background: aquamarine;
+}
+div.comment-wrap>h3{
+    font-weight: normal;
+}
