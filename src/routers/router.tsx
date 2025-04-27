@@ -3,11 +3,12 @@ import MainLayout from "../layouts/MainLayout.tsx";
 import UsersPage from "../Pages/UsersPage.tsx";
 import PostsPage from "../Pages/PostsPage.tsx";
 import CommentsPage from "../Pages/CommentsPage.tsx";
-import UsersJP from "../components/users/UsersJP.tsx";
+import UsersJP from "../components/users/JPComp/UsersJP.tsx";
 import UsersDJ from "../components/users/UsersDJ.tsx";
 import PostsJP from "../components/posts/PostsJP.tsx";
 import PostsDJ from "../components/posts/PostsDJ.tsx";
 import CommentsJP from "../components/comments/CommentsJP.tsx";
+import CommentsDJ from "../components/comments/CommentsDJ.tsx";
 
 export const router = createBrowserRouter(
     [
@@ -27,6 +28,7 @@ export const router = createBrowserRouter(
                 {path:'comments', element:<CommentsPage/>,
                     children:[
                         {path:'jsonplaceholder', element:<CommentsJP/>},
+                        {path:'dummyjson', element:<CommentsDJ/>},
                     ]},
             ]
         }
