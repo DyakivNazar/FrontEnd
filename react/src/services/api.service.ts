@@ -1,5 +1,5 @@
-import { IUsersDJ } from "../models/dummyjson/users/IUserDJ"
-import { IUsersJP } from "../models/jsonplaceholder/users/IUsersJP"
+import { IUsersDJ } from "../models/dummyjson/users/IUserDJ.ts"
+import { IUsersJP } from "../models/jsonplaceholder/users/IUsersJP.ts"
 import {IUserDummy} from "../models/dummyjson/users/IUserDummy.ts";
 
 const userJP = import.meta.env.VITE_API_URL_JP + '/users'
