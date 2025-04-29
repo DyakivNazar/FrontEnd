@@ -8,7 +8,8 @@ type UsersJPType = {
 const UserJp: FC<UsersJPType> = ({user}) => {
     return (
         <div>
-            {user.name}
+            <p>{user.id}</p>
+            <p>{user.name}</p>
         </div>
     );
 };
