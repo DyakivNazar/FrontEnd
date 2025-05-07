@@ -1,11 +1,11 @@
 import {Outlet} from "react-router-dom";
-// import UsersComp from "../components/user/UsersComp.tsx";
+import Menu from "../components/menu/Menu.tsx";
 
 const MainLayout = () => {
     return (
         <div>
-            {/*<UsersComp/>*/}
-            {/*<hr/>*/}
+            <Menu/>
+            <hr/>
             <Outlet/>
         </div>
     );
