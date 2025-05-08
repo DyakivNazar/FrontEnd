@@ -4,7 +4,7 @@ const Menu = () => {
     return (
         <div>
             <ul>
-                <li><Link to={'/'}></Link></li>
+                <li><Link to={'users'}>Users</Link></li>
             </ul>
         </div>
     );
