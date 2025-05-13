@@ -13,7 +13,7 @@ const PostsComp = () => {
             console.log(reason);
             refresh()
                 .then(() => loadAuthPosts())
-                .then(value => console.log(value))
+                .then(value => setPosts(value))
         })
 
     }, []);
