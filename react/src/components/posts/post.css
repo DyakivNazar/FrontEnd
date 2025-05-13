@@ -1,0 +1,8 @@
+.post{
+    width: 500px;
+    border:  1px solid black;
+    margin-bottom: 5px;
+}
+.title{
+    text-align: center;
+}

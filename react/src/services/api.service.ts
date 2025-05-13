@@ -1,20 +1,11 @@
 import axios from 'axios';
 import {IUserWithTokens} from "../models/IUserWithTokens.ts";
-import {IProduct} from "../models/IProduct.ts";
-import {IProductsResponseModelType} from "../models/IProductsResponseModelType.ts";
+import {IPosts} from "../models/IPosts.ts";
+import {IPostsResponseModelType} from "../models/IPostsResponseModelType.ts";
 import {retriveLocalStorage} from "./helpers.ts";
 import {ITokenPair} from "../models/ITokenPair.ts";
+import {LoginData} from "../models/LoginData.ts";
 
-type LoginData = {
-    /*Власний тип LoginData для
-        Ім’я користувача - текстовий рядок
-        Пароль - текстовий рядок
-        Час, на який дійсний логін (у хвилинах) - числове значення
-    */
-    username: string;
-    password: string;
-    expiresInMins: number
-}
 
 const axiosInstance = axios.create({
     /*Екземпляр axios для роботи з api dummyjson.com */
@@ -33,24 +24,32 @@ axiosInstance.interceptors.request.use((requestObject) => {
 })
 
 
-export const login = async ({username, password, expiresInMins}: LoginData): Promise<IUserWithTokens> => {
-    /*Асинхронна функція, яка логує через api з використанням Axios, логує за  username, password, expiresInMins, і повертає користувача з токеном
-     {data: userWithTokens} відправляє запис про username, password, expiresInMins в https-запит login,
+export const login = async (log: LoginData): Promise<IUserWithTokens> => {
+    /*Асинхронна функція, яка логує через api з використанням Axios, логує за log, і повертає користувача з токеном
+     logWithExpiry додаємо параметр expiresInMins
+     {data: userWithTokens} відправляє запис про logWithExpiry в https-запит login,
                             повертає в userWithTokens дані користувача, та два токена accessToken і refreshToken
      записуємо отримані дані в localStorage з ключем user, а дані перетворюємо в JSON-рядок */
-    const {data: userWithTokens} = await axiosInstance.post<IUserWithTokens>('/login', {username, password, expiresInMins});
+
+    const logWithExpiry = {
+        ...log,
+        expiresInMins: 1
+    };
+
+    const {data: userWithTokens} = await axiosInstance.post<IUserWithTokens>('/login', logWithExpiry);
     console.log(userWithTokens);
     localStorage.setItem('user', JSON.stringify(userWithTokens));
     return userWithTokens;
 }
 
-export const loadAuthProducts = async (): Promise<IProduct[]> => {
+export const loadAuthPosts = async (): Promise<IPosts[]> => {
     /*Асинхронна функція, яка повертає масив продуктів
-     {data: {products}} отримує відповідь з https-запиту products, який має тип IProductsResponseModelType
-                         це тип має масив product з інтефейсом IPorduct*/
+     {data: {posts}} отримує відповідь постів зареєстрованого користувача з https-запиту posts, який має тип IPostsResponseModelType
+                         це тип має масив posts з інтефейсом IPosts*/
+    const userId = retriveLocalStorage<IUserWithTokens>('user').id;
 
-    const {data: {products}} = await axiosInstance.get<IProductsResponseModelType>('/products');
-    return products
+    const {data: {posts}} = await axiosInstance.get<IPostsResponseModelType>('/posts/user/'+ userId);
+    return posts
 }
 
 
