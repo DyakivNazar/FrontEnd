@@ -2,30 +2,34 @@ import {useEffect, useState} from "react";
 import {loadAuthPosts, refresh} from "../../services/api.service.ts";
 import {IPosts} from "../../models/IPosts.ts";
 import PostComp from "./PostComp.tsx";
+import {Link} from "react-router-dom";
 
 const PostsComp = () => {
 
     const [posts, setPosts] = useState<IPosts[]>([]);
-    // const [dontlogin, setDontlogin] = useState<string>("");
+    const [dontlogin, setDontlogin] = useState<string>("");
 
     useEffect(() => {
         loadAuthPosts().then(value => {
             setPosts(value)
         }).catch(reason => {
             console.log(reason);
-            // if (reason.status === 401) {
-            //     setDontlogin("Ви не зареєстровані");
-            // }
+            if (reason.status === 401) {
+                setDontlogin("Ви не зареєстровані");
+            }
             refresh()
-                .then(() => loadAuthPosts())
+                .then(() => {
+                    setDontlogin('')
+                    return loadAuthPosts()
+                })
                 .then(value => setPosts(value))
         })
 
     }, []);
-    // const messeg = dontlogin && <p style={{color: "red"}}>{dontlogin} <span style={{color: "black"}}>зареєструватися тут <Link to={'/login'}>login</Link></span></p>;
+    const messeg = dontlogin && <p style={{color: "red"}}>{dontlogin} <span style={{color: "black"}}>зареєструватися тут <Link to={'/login'}>login</Link></span></p>;
     return (
         <div>
-            {/*{messeg}*/}
+            {messeg}
             {posts.map((post) => <PostComp key={post.id} post={post} />)}
         </div>
     );
