@@ -1,11 +1,11 @@
-import {Link} from "react-router-dom";
+import UsersComponent from "../usercomp/UsersComponent.tsx";
 
 const Menu = () => {
+
+    console.log('menu')
     return (
         <div>
-            <ul>
-                <li><Link to={'/'}></Link></li>
-            </ul>
+            <UsersComponent/>
         </div>
     );
 };
