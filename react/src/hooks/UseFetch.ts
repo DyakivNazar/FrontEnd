@@ -4,7 +4,7 @@ export const useFetch = <T>(url: string) => {
     const [data, setData] = useState<T>();
     useEffect(() => {
         fetch(url).then(value => value.json()).then(value => setData(value))
-    }, []);
+    }, [url]);
 
     return data
 }
