@@ -1,0 +1,6 @@
+.user{
+    margin-left: 5px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    padding: 5px 0;
+}

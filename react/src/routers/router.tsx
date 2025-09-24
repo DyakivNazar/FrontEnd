@@ -1,8 +1,9 @@
 import {createBrowserRouter} from "react-router-dom";
 import MainLayout from "../layouts/MainLayout.tsx";
-import {UsersPage} from "../pages/UsersPages/UsersPage.tsx";
-import {PostsPage} from "../pages/postsPages/PostsPage.tsx";
-import {CommentsPage} from "../pages/CommentsPages/CommentsPage.tsx";
+import {UsersPage} from "../pages/UsersPage.tsx";
+import {PostsPage} from "../pages/PostsPage.tsx";
+import {CommentsPage} from "../pages/CommentsPage.tsx";
+import {ComplexPage} from "../pages/ComplexPage.tsx";
 
 export const router = createBrowserRouter(
     [
@@ -11,7 +12,8 @@ export const router = createBrowserRouter(
             children:[
                 {path: 'users', element:<UsersPage/>},
                 {path: 'posts', element:<PostsPage/>},
-                {path: 'comments', element:<CommentsPage/>}
+                {path: 'comments', element:<CommentsPage/>},
+                {path: 'complex', element:<ComplexPage/>}
             ]
         }
     ]
