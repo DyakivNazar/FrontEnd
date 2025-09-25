@@ -4,7 +4,6 @@ import {useEffect} from "react";
 import {userSliceActions} from "../../redux/slices/userSlise.ts";
 import {postSliceActions} from "../../redux/slices/postSlise.ts";
 import {commentSliceActions} from "../../redux/slices/commentSlise.ts";
-import {Link} from "react-router-dom";
 import './complex.css'
 
 export const ComplexComp = () => {
@@ -13,30 +12,10 @@ export const ComplexComp = () => {
     const dispatch = useAppDispatch();
 
     useEffect(() => {
-        if (users.length) dispatch(userSliceActions.loadUsers());
-        if (posts.length) dispatch(postSliceActions.loadPosts());
-        if (comments.length) dispatch(commentSliceActions.loadComments());
+        if (!users.length) dispatch(userSliceActions.loadUsers());
+        if (!posts.length) dispatch(postSliceActions.loadPosts());
+        if (!comments.length) dispatch(commentSliceActions.loadComments());
     }, []);
-
-    const missing = [];
-    if (!users.length) missing.push("users");
-    if (!posts.length) missing.push("posts");
-    if (!comments.length) missing.push("comments");
-
-    if (missing.length) {
-        return <div className={'error'}>
-                    <p>No {missing.join(" and ")} found.</p>
-                    <ul>
-                        Go to
-                        {missing.map((item) =>(
-                            <li key={item}>
-                                <Link className={'white-link'} to={`/${item}`}>{item}</Link>
-                            </li>
-                        ))}
-                    </ul>
-                </div>;
-    }
-
 
     return (
         <div>
